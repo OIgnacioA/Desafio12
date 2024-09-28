@@ -1,0 +1,28 @@
+replicaCount: 1
+
+image:
+  repository: edgaregonzalez/educacionit-app
+  tag: v1.0.0
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 3000
+
+mongodb:
+  enabled: true
+  image: mongo:7.0
+  username: root
+  password: s3cr3t!
+  dbName: app-desafio10
+  servicePort: 27017
+  storage: 100Mi
+
+app:
+  name: educacionit-app
+  port: 3000
+  env:
+    mongoUri: mongodb://db-server:27017
+    mongoUser: root
+    mongoPassword: s3cr3t!
+    mongoDbName: app-desafio10
